@@ -279,6 +279,7 @@ class Cell:
             seed=None,
             n_points=500,
             threshold = 0.25,
+            dump=False,
             docker=None,
             client=None):
 
@@ -338,7 +339,10 @@ class Cell:
                         client=client))
             wallclock_time.append(t.duration)
 
-        return (data, wallclock_time)
+        if dump:
+            return (data[-1], wallclock_time[-1])
+        else:
+            return (data, wallclock_time)
 
     def run(
             self,
