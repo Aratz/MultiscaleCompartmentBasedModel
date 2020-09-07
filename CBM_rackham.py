@@ -1,6 +1,8 @@
 import sys
 import CBM
 import time
+import json
+import numpy as np
 import reactionrates as rr
 
 def adjust_parameters(parameters):
@@ -48,7 +50,7 @@ D, chi, k_d = [float(v) for v in sys.argv[1:4]]
 init_model = CBM.Cell(adjust_parameters(base_parameters))
 
 # Generate initial state
-initial_state = [smoldyn.Mol("Gf", 0.0, 0.0, 0.0)]
+initial_state = {'Gf': 1}
 _, initial_state = init_model.run(initial_state, time_stop=INIT_STOP, n_trajectories=1, n_points=2)
 
 cbm_parameters = {**base_parameters}
@@ -64,8 +66,8 @@ start = time.time()
 history = model.run(initial_state, time_stop=TSTOP, n_trajectories=NTRAJ, n_points=NPOINTS)
 end = time.time()
 
-with open('data/cbm_data.json', 'w') as f:
-json.dump((cbm_parameters, history), f)
+with open(f'data/CBM_data({D},{chi},{k_d}).json', 'w') as f:
+    json.dump((cbm_parameters, history), f)
 
-with open('data/cbm_time.json', 'w') as f:
-json.dump((cbm_parameters, end - start), f)
+with open(f'data/CBM_time({D},{chi},{k_d}).json', 'w') as f:
+    json.dump((cbm_parameters, end - start), f)

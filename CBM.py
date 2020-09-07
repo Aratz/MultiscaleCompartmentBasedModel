@@ -113,7 +113,7 @@ class Cell(gillespy2.Model):
             species:
             ([trajectory[species].tolist() for trajectory in raw_results]
                 if n_trajectories > 1 else
-                raw_results[0][species].tolist())
+                raw_results[species].tolist())
             for species in self.list_species}
 
         results['time'] = ([list(self.tspan) for _ in range(n_trajectories)]

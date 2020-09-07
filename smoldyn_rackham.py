@@ -108,8 +108,8 @@ history, time_data = model.run_threshold(
     initial_state, time_stop=TSTOP, n_trajectories=NTRAJ,
     n_points=NPOINTS, threshold=THRES, dump=True)
 
-with open('data/smoldyn_data({},{},{}).json'.format(D, chi, k_d), 'w') as f:
+with open(f'data/smoldyn_data({D},{chi},{k_d}).json', 'w') as f:
     json.dump((smoldyn_parameters, history), f)
 
-with open('data/smoldyn_time({},{},{}).json'.format(D, chi, k_d), 'w') as f:
+with open(f'data/smoldyn_time({D},{chi},{k_d}).json', 'w') as f:
     json.dump((smoldyn_parameters, time_data), f)
