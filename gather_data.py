@@ -15,4 +15,4 @@ for filename in sys.argv[2:]:
         data[str(key)] = json.load(f)
 
 with open(sys.argv[1], 'w') as f:
-    json.dump(data, f)
+    json.dump(data, f, separators=(',', ':'))
