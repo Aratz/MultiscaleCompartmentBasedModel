@@ -19,7 +19,7 @@ if len(sys.argv) <= 1:
 if len(sys.argv) <= 2:
     raise Exception("Output file missing")
 
-EPSILON = 10
+EPSILON = 0
 MAXPOP = 10
 
 
@@ -36,7 +36,6 @@ base_parameters = {
 }
 
 def adjust_parameters(parameters, model):
-    print(parameters)
     parameters = {**parameters}
 
     sigma = 0.01
